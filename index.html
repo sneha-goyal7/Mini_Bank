@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini Bank</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <h1>🏦 Mini Bank</h1>
+  </header>
+
+  <main class="container">
+
+    <!-- Messages (success / error) yahan dikhte hain -->
+    <div id="message" class="message"></div>
+
+    <!-- Login aur Create Account -->
+    <section id="authSection" class="auth">
+
+      <form id="createForm" class="card">
+        <h2>Create Account</h2>
+
+        <label for="newName">Name</label>
+        <input type="text" id="newName" placeholder="Your name" required>
+
+        <label for="newPin">4-digit PIN</label>
+        <input type="password" id="newPin" placeholder="e.g. 1234" maxlength="4" inputmode="numeric" required>
+
+        <label for="newBalance">Starting balance (₹)</label>
+        <input type="number" id="newBalance" placeholder="e.g. 1000" min="0" value="0">
+
+        <label for="newType">Account type</label>
+        <select id="newType">
+          <option value="Savings">Savings (gets interest)</option>
+          <option value="Current">Current (overdraft ₹5,000)</option>
+        </select>
+
+        <button type="submit" class="btn">Create Account</button>
+      </form>
+
+      <form id="loginForm" class="card">
+        <h2>Login</h2>
+
+        <label for="loginId">Account ID</label>
+        <input type="text" id="loginId" placeholder="e.g. AC1234" required>
+
+        <label for="loginPin">PIN</label>
+        <input type="password" id="loginPin" placeholder="4-digit PIN" maxlength="4" inputmode="numeric" required>
+
+        <button type="submit" class="btn">Login</button>
+      </form>
+
+    </section>
+
+    <!-- Dashboard (login ke baad dikhta hai) -->
+    <section id="dashboard" class="hidden">
+
+      <div class="card balance-card">
+        <h2 id="welcomeText"></h2>
+        <p id="accountInfo"></p>
+        <p class="balance" id="balanceText"></p>
+        <p id="overdraftText" class="small"></p>
+        <button type="button" class="btn small-btn logout" data-action="logout">Logout</button>
+      </div>
+
+      <div class="grid">
+
+        <div class="card">
+          <h3>Deposit / Withdraw</h3>
+          <input type="number" id="amountInput" placeholder="Amount (₹)" min="0">
+          <div class="row">
+            <button type="button" class="btn" data-action="deposit">Deposit</button>
+            <button type="button" class="btn secondary" data-action="withdraw">Withdraw</button>
+          </div>
+          <button type="button" class="btn interest hidden" id="interestBtn" data-action="interest">Add monthly interest</button>
+        </div>
+
+        <div class="card">
+          <h3>Transfer money</h3>
+          <input type="text" id="transferTo" placeholder="Receiver Account ID">
+          <input type="number" id="transferAmount" placeholder="Amount (₹)" min="0">
+          <button type="button" class="btn" id="transferBtn" data-action="transfer">Transfer</button>
+        </div>
+
+        <div class="card">
+          <h3>Currency converter</h3>
+          <select id="currencySelect">
+            <option value="USD">USD ($)</option>
+            <option value="EUR">EUR (€)</option>
+            <option value="GBP">GBP (£)</option>
+          </select>
+          <button type="button" class="btn" data-action="convert">Convert my balance</button>
+          <p id="convertedText" class="converted"></p>
+        </div>
+
+      </div>
+
+      <div class="card">
+        <h3>Transaction History</h3>
+
+        <div class="row">
+          <select id="filterSelect">
+            <option value="all">All</option>
+            <option value="credit">Money in</option>
+            <option value="debit">Money out</option>
+          </select>
+          <select id="sortSelect">
+            <option value="newest">Newest first</option>
+            <option value="oldest">Oldest first</option>
+            <option value="highest">Highest amount</option>
+          </select>
+        </div>
+
+        <p id="summaryText" class="small"></p>
+        <ul id="historyList" class="history-list"></ul>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
