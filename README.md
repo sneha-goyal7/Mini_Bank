@@ -3,6 +3,8 @@
 
 A virtual banking app built with plain **HTML, CSS and JavaScript**. There is no framework and no backend. All the logic lives in JavaScript, and the project is designed to practise core JS concepts: classes, inheritance, error handling, async code and browser storage.
 
+🔗 **Live Demo:** (https://mini-bank-sneha.netlify.app)
+
 > ⚠️ This is a learning project. PINs are stored as plain text in `localStorage`, so never use real PINs or real data.
 
 ## Features
